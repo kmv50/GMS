@@ -20,10 +20,9 @@ private:
 public slots:
     bool Guardar(int id, QString Request);
     QString GetError(){return lastError;}
-    QString GetTable(int id);
+    QString GetTable(int id, int index = 0, QString request = NULL);
     QString GetForm(int id,int cod);//id para buscar el objeto y cod para ver si la cargo desde el inicio o form nulo
     bool Borrar(int id , int cod);
-
 };
 
 #endif // MAINWINDOW_H

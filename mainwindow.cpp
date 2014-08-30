@@ -34,7 +34,7 @@ bool MainWindow::Guardar(int id, QString Request)
     return true;
 }
 
-QString MainWindow::GetTable(int id)
+QString MainWindow::GetTable(int id, int index, QString request)
 {
     QString tableHtml;
     switch (id) {
@@ -79,3 +79,4 @@ bool MainWindow::Borrar(int id, int cod)
     }
     return true;
 }
+

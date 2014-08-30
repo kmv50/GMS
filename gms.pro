@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     nexus.cpp \
     BaseClase.cpp \
     util.cpp \
-    genericos.cpp
+    genericos.cpp \
+    productos.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -28,5 +29,6 @@ HEADERS += \
     BaseClase.h \
     NameClase.h \
     util.h \
-    genericos.h
+    genericos.h \
+    productos.h
 

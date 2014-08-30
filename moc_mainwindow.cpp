@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[10];
-    char stringdata[68];
+    QByteArrayData data[12];
+    char stringdata[82];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,12 +36,15 @@ QT_MOC_LITERAL(3, 20, 2),
 QT_MOC_LITERAL(4, 23, 7),
 QT_MOC_LITERAL(5, 31, 8),
 QT_MOC_LITERAL(6, 40, 8),
-QT_MOC_LITERAL(7, 49, 7),
-QT_MOC_LITERAL(8, 57, 3),
-QT_MOC_LITERAL(9, 61, 6)
+QT_MOC_LITERAL(7, 49, 5),
+QT_MOC_LITERAL(8, 55, 7),
+QT_MOC_LITERAL(9, 63, 7),
+QT_MOC_LITERAL(10, 71, 3),
+QT_MOC_LITERAL(11, 75, 6)
     },
     "MainWindow\0Guardar\0\0id\0Request\0GetError\0"
-    "GetTable\0GetForm\0cod\0Borrar"
+    "GetTable\0index\0request\0GetForm\0cod\0"
+    "Borrar"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +54,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,18 +62,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   39,    2, 0x0a /* Public */,
-       5,    0,   44,    2, 0x0a /* Public */,
-       6,    1,   45,    2, 0x0a /* Public */,
-       7,    2,   48,    2, 0x0a /* Public */,
-       9,    2,   53,    2, 0x0a /* Public */,
+       1,    2,   49,    2, 0x0a /* Public */,
+       5,    0,   54,    2, 0x0a /* Public */,
+       6,    3,   55,    2, 0x0a /* Public */,
+       6,    2,   62,    2, 0x2a /* Public | MethodCloned */,
+       6,    1,   67,    2, 0x2a /* Public | MethodCloned */,
+       9,    2,   70,    2, 0x0a /* Public */,
+      11,    2,   75,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Bool, QMetaType::Int, QMetaType::QString,    3,    4,
     QMetaType::QString,
+    QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::QString,    3,    7,    8,
+    QMetaType::QString, QMetaType::Int, QMetaType::Int,    3,    7,
     QMetaType::QString, QMetaType::Int,    3,
-    QMetaType::QString, QMetaType::Int, QMetaType::Int,    3,    8,
-    QMetaType::Bool, QMetaType::Int, QMetaType::Int,    3,    8,
+    QMetaType::QString, QMetaType::Int, QMetaType::Int,    3,   10,
+    QMetaType::Bool, QMetaType::Int, QMetaType::Int,    3,   10,
 
        0        // eod
 };
@@ -84,11 +91,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 1: { QString _r = _t->GetError();
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 2: { QString _r = _t->GetTable((*reinterpret_cast< int(*)>(_a[1])));
+        case 2: { QString _r = _t->GetTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 3: { QString _r = _t->GetForm((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+        case 3: { QString _r = _t->GetTable((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
-        case 4: { bool _r = _t->Borrar((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+        case 4: { QString _r = _t->GetTable((*reinterpret_cast< int(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 5: { QString _r = _t->GetForm((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 6: { bool _r = _t->Borrar((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         default: ;
         }
@@ -120,13 +131,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }

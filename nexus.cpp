@@ -7,7 +7,6 @@ Nexus::Nexus()
     usuario = "root";
     password = "sempron";
 }
-
 bool Nexus::Open()
 {
     db = new QSqlDatabase;
@@ -30,7 +29,6 @@ void Nexus::CloseConexion()
    db->removeDatabase("gmsConection");
    delete db;
 }
-
 
 QString Nexus::GetHtmlTable(QString procedure)
 {

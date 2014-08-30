@@ -368,9 +368,9 @@ _Cod_producto int
 )
 begin 
    if(_Cod_producto = 0)then 
-      select Cod_producto , nombre , Precio_compra , Precio_venta from TB_Productos where Estado = 1;
+      select Cod_producto , nombre , Precio_compra , Precio_venta from TB_Productos  where Estado = 1;
    else 
-      select nombre , Precio_compra , Precio_venta , Id_medida , Id_categoria , Id_marca , mar.nombre from TB_Productos
+      select pro.nombre , Precio_compra , Precio_venta , Id_medida , Id_categoria , Id_marca , mar.nombre from TB_Productos as pro
       inner join TB_Marcas as mar on Id_marca = Cod_marca where Cod_producto = _Cod_producto;
    end if;
-end;
+end;$$
