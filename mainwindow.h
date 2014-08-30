@@ -14,7 +14,7 @@ public:
     ~MainWindow();
 private:
     QString lastError;
-    QTime timer;
+    QTime timer2;
     //timer.start();
     //QString::number(timer.elapsed());
 public slots:
