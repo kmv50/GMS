@@ -341,3 +341,36 @@ if(Action = 2)then
   end if;
 end if;
 end;$$
+
+create procedure sp_setProductos
+(
+_Cod_producto   int(11),       
+_nombre         varchar(50),   
+_Precio_compra  decimal(10,2), 
+_Precio_venta   decimal(10,2),
+_Id_medida      int(11),   
+_Id_categoria   int(11),      
+_Id_marca       int(11)
+)
+begin 
+  if(_Cod_producto = 0)then 
+     insert into TB_Productos values (null,_nombre,_Precio_compra,_Precio_venta,1,_Id_medida,_Id_categoria,_Id_marca);
+     select Cod_producto from TB_Productos order by Cod_producto desc limit 1;
+  else 
+     update TB_Productos set nombre= _nombre,Precio_compra = _Precio_compra ,Precio_venta = _Precio_venta,
+     Id_medida = _Id_medida, Id_categoria = _Id_categoria ,Id_marca = _Id_marca where Cod_producto = _Cod_producto;
+  end if;
+end;$$
+
+create procedure sp_getProductos 
+(
+_Cod_producto int
+)
+begin 
+   if(_Cod_producto = 0)then 
+      select Cod_producto , nombre , Precio_compra , Precio_venta from TB_Productos where Estado = 1;
+   else 
+      select nombre , Precio_compra , Precio_venta , Id_medida , Id_categoria , Id_marca , mar.nombre from TB_Productos
+      inner join TB_Marcas as mar on Id_marca = Cod_marca where Cod_producto = _Cod_producto;
+   end if;
+end;

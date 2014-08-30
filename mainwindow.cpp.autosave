@@ -1,0 +1,85 @@
+#include "mainwindow.h"
+
+MainWindow::MainWindow(QWebView *parent)
+    :QWebView(parent)
+{
+    setWindowTitle("GMS");
+    setContextMenuPolicy(Qt::PreventContextMenu);
+    setUrl(QString("http://gms123.esy.es/GMS/MainWindow.html"));
+    page()->mainFrame()->addToJavaScriptWindowObject("QT", this);
+}
+MainWindow::~MainWindow()
+{
+
+}
+
+
+bool MainWindow::Guardar(int id, QString Request)
+{
+    try{
+    switch (id) {
+    case CRMarcas: case CRCategorias: case CRMedidas: case CRTipos: {
+       Genericos *obj = new Genericos;
+       obj->setIdForm(id);
+       obj->SetJsonRequest(Request);
+       delete obj;
+    }break;
+    default: return false;  break;
+    }
+    }catch(QString ex)
+    {
+        lastError = ex;
+        return false;
+    }
+    return true;
+}
+
+QString MainWindow::GetTable(int id)
+{
+    QString tableHtml;
+    switch (id) {
+    case CRMarcas: case CRCategorias: case CRMedidas: case CRTipos: {
+       Genericos *obj = new Genericos;
+       obj->setIdForm(id);
+       tableHtml = obj->GetTable();
+       delete obj;
+    }break;
+    default: return "Clase no encontrada";  break;
+    }
+    return tableHtml;
+}
+QString MainWindow::GetForm(int id, int cod)
+{
+    QString form;
+    switch (id) {
+    case CRMarcas: case CRCategorias: case CRMedidas: case CRTipos: {
+       Genericos *obj = new Genericos;
+       obj->setIdForm(id);
+       form = obj->GetForm(cod);
+       delete obj;
+    }break;
+    default: return "Clase no encontrada";  break;
+    }
+    return form;
+}
+
+bool MainWindow::Borrar(int id, int cod)
+{
+    switch (id) {
+    case CRMarcas: case CRCategorias: case CRMedidas: case CRTipos: {
+       Genericos *obj = new Genericos;
+       obj->setIdForm(id);
+       if(!obj->DeletebyCod(cod))
+       {
+            delete obj;
+            return false;
+       }
+    }break;
+    default: return false;  break;
+    }
+    return true;
+}
+QString MainWindow::GetTableFilter(int id,QString JsonFiltro)
+{
+    
+}
