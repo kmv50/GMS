@@ -4,6 +4,12 @@
 //C:\QT\Qt5.3.1\5.3\mingw482_32\plugins\sqldriver
 int main(int argc, char *argv[])
 {
+
+//    para ver conexion name git remote
+//    git pull origin
+//    git add *
+//    git commit
+//    git push origin master
     QApplication a(argc, argv);
     QWebSettings::setMaximumPagesInCache(0);
     QWebSettings::setObjectCacheCapacities(0, 0, 0);
