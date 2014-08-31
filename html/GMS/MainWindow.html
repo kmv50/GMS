@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>GMC</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css" media="all" />
+        <link rel="stylesheet" href="css/table.css" media="all" />
+        <link rel="stylesheet" href="css/custom-theme/jquery-ui-1.10.4.custom.min.css" media="all" />
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="js/JSMainFunction.js"></script>
+        <script type="text/javascript" src="js/JSBotonesAcciones.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    </head>
+    <body>
+        <header>
+
+            <div id="titleAplication">
+                Ecommerce<br>
+                <h1>Tienda GMC</h1>
+            </div>
+            <h1>Inventario Ventas</h1>
+            <div id="userControl">
+                <img src="img/appbar.user.png">
+                <img src="img/appbar.database.png">
+            </div>
+        </header>
+        <div id="mainContenedor">
+            <div class="ContenedorFrame">
+                <h1>Estadisticas</h1>
+                <div class="columna1">
+                    
+                <div class="menuButton2" style="background-color: #f09609 ">
+                    vdfsd
+                </div>
+                <div class="menuButton2" style="background-color: #339933 ">
+                    vdfsd
+                </div>
+                <br>
+                <div class="menuButton1" style="background-color: #20608E"></div>
+                
+                </div>
+            </div>
+            <div class="ContenedorFrame" style="margin-top: 50px;" ></div> 
+            
+            <div class="ContenedorFrame" style="width: 650px;">
+                <h1>Catalogos</h1>
+                <div class="columna1" style="width: 800px;">
+                    
+            <div onclick="Create_Genericos(0);" class="menuButton1" style="background-color: #F09609 ">
+                    <img src="img/appbar.notification.star.png">
+                    <h3>Marcas</h3>
+                </div>
+            <div onclick="Create_Genericos(3);" class="menuButton1" style="background-color: #2E8BCC ">
+                <img src="img/appbar.draw.brush.reflection.png">
+                    <h3>Tipos</h3>
+                    </div>
+            <div onclick="Create_Genericos(2);" class="menuButton1" style="background-color: #7B4F9D ">
+                <img src="img/appbar.battery.2.png">
+                    <h3>Medidas</h3>
+                    </div>
+                <div onclick="Create_Genericos(1);" class="menuButton2" style="background-color: #008641">
+                     <img src="img/appbar.cell.down.png">
+                    <h3>Categorias</h3>
+                </div>
+                    
+                </div>
+            </div>
+                        <img src="img/Catalogos.png" style="float: left; width: 400px; margin-top: 60px;">
+            <div class="ContenedorFrame" style="margin-left: 100px; width: 910px" >
+                <h1>Productos / Distribuidores</h1>
+                <div class="columna1" style="width: 900px;">
+                    
+                    <div onclick="Create_Empresa();" class="menuButton1" style="background-color: #41A62A ">
+                <img src="img/appbar.home.gps.png">
+                    <h3>Tiendas</h3>
+                </div>
+            <div onclick="CallGenericos(3);" class="menuButton1" style="background-color: #F29400 ">
+                <img src="img/appbar.group.png">
+                    <h3>Proveedores</h3>
+                    </div>
+            <div onclick="CallGenericos(2);" class="menuButton1" style="background-color: #FFED00 ">
+                <img src="img/appbar.food.png">
+                    <h3>Productos</h3>
+                    </div>
+                <div onclick="CallGenericos(1);" class="menuButton1" style="background-color: #DEDB00">
+                    <img src="img/appbar.book.open.text.image.png">
+                    <h3>Inventario</h3>
+                </div>
+                    <img src="img/computadoras.png">
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id="leftBar">
+            <img src="img/izquierda.png" >
+        </div>
+        <div id="rightBar">
+            <img src="img/derecha.png" >
+        </div>
+        <div id="loaderDisplay" style="display: none">
+            <label id="lb_bloqMensaje">Espere por favor</label>
+            <br>
+            <img src="img/ajax-loader.gif">
+        </div>
+        <div id="VentanaGenerica1"  class="ModalWindow"></div>
+        <div id="VentanaGenerica2"  class="ModalWindow"></div>
+        <div id="DialogBox">
+            <div>
+            <h4 id="lbl_msn"></h4>
+            </div>
+            <img src="img/errorH.png">
+        </div>
+    </body>
+</html>

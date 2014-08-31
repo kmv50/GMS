@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWebView *parent)
 {
     setWindowTitle("GMS");
     setContextMenuPolicy(Qt::PreventContextMenu);
-    setUrl(QString("http://gms123.esy.es/GMS/MainWindow.html"));
+    setUrl(QString("file://"+QDir::currentPath()+"/html/GMS/MainWindow.html"));
     //setUrl(QString("file:///var/www/html/PhpProject1/public_html/GMS/MainWindow.html"));
     page()->mainFrame()->addToJavaScriptWindowObject("QT", this);
 }

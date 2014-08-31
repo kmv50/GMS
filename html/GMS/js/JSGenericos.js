@@ -84,4 +84,4 @@ function JAgregarGenericos()
     if(!QT.Guardar(idtype,parseToString(request)))
         return false;
     return true;
-} 
+}

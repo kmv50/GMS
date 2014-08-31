@@ -62,4 +62,4 @@ function initialize()
        ubicacion = latLng;
          
          
-} 
+}
