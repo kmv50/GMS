@@ -17,6 +17,7 @@ public:
     virtual bool DeletebyCod(int cod) =0;
     void SetJsonRequest(const QString &str);
     QString getLAstError(){return lastError;}
+    virtual QString GetScript() = 0;
 protected:
     Nexus *sql;
     QString lastError;
@@ -25,6 +26,7 @@ protected:
     void LoadFormHTml(const char * path_file);
     void BindDataHtmlForm(const QString &token , const QString &value);
     virtual bool RequestExec() = 0;
+    QString LoadScript(const char * url);
 };
 
 #endif // BASECLASE_H

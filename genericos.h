@@ -13,6 +13,7 @@ public:
     virtual QString GetForm(int id);
     virtual bool DeletebyCod(int cod);
     void setIdForm(int id){this->idForm = id;}
+    virtual QString GetScript();
 private:
     QString getTitulo();
     int idForm;

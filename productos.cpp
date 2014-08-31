@@ -9,6 +9,16 @@ Productos::~Productos()
 {
 
 }
+/*
+:Cod_Producto
+:nombre
+:compra
+:venta
+:cb_categoria
+:marcaSelected
+:cb_medida
+:proveedoresData
+ */
 
 QString Productos::GetTable()
 {
@@ -44,7 +54,7 @@ QString Productos::GetTable()
    }
 }
 
-QString Productos::getMarcasTable()
+QString Productos::getMarcasTable(QString filter)
 {
 
 }
@@ -62,4 +72,12 @@ bool Productos::DeletebyCod(int cod)
 bool Productos::RequestExec()
 {
 
+}
+QString Productos::GetScript()
+{
+    try {
+        return LoadScript("");
+    } catch (QString ex) {
+        return ex;
+    }
 }

@@ -1,0 +1,40 @@
+<div>
+    <input type='hidden' id='Cod_Producto' value=":Cod_Producto">
+    <h2>Producto</h2>
+    <table>
+        <tr>
+            <td>Nombre</td>
+            <td><input type="text" value=":nombre" id="txt_pro_nombre" maxlength="50" placeholder="Nombre" title="El nombre del producto maximo 50 caracteres Campo requerido"></td>
+        </tr>
+        <tr>
+            <td>Compra</td>
+            <td><input type="number" max="99999999" id="txt_pro_compra" value=":compra" placeholder="Abreviacion de la marca" title="Este campo se usara para mostrar el dato de forma mas simple para el resto del sistema como maximo tiene 10 caracteres y es un Campo obligatorio"></td>
+        </tr>
+        <tr>
+            <td>Venta</td>
+            <td><input type="number" max="0" id="txt_pro_venta" value=":venta" placeholder="Abreviacion de la marca" title="Este campo se usara para mostrar el dato de forma mas simple para el resto del sistema como maximo tiene 10 caracteres y es un Campo obligatorio"></td>
+        </tr>
+        <tr>
+            <td>Categoria</td>
+            <td><select id="cb_pro_categoria">:cb_categoria</select></td>
+        </tr>
+        <tr>
+            <td>Marca</td>
+            <td><input type="text" id="txt_marcaSelecte" placeholder="Seleccion Marca" value=":marcaSelected" readonly></td>
+            <td><input type="button" id="b_getMarcas" class=""></td>
+        </tr>
+        <tr>
+            <td>Medida</td>
+            <td><select id="cb_pro_medida">:cb_medida</select></td>
+        </tr>
+        <tr>
+            <td>Proveedor</td>
+            <td><input type="button" id="b_agregarProveedor"></td>
+        </tr>
+    </table>
+    <div id="frm_proveedores">
+        :proveedoresData
+    </div>
+    <!-- Esto es para las marcas y los proveedores (seleccionar) -->
+    <div id="tb_util" style="display: none"></div>
+</div>

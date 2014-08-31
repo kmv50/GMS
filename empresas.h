@@ -1,19 +1,18 @@
-﻿#ifndef PRODUCTOS_H
-#define PRODUCTOS_H
+#ifndef EMPRESAS_H
+#define EMPRESAS_H
 #include <BaseClase.h>
 
-class Productos: public BaseClase
+class empresas: public BaseClase
 {
 public:
-    explicit Productos();
-    ~Productos();
+    explicit empresas();
+    ~empresas();
     virtual QString GetTable();
     virtual QString GetForm(int id);
     virtual bool DeletebyCod(int cod);
-    QString getMarcasTable(QString filter);
     virtual QString GetScript();
 protected:
     virtual bool RequestExec();
 };
 
-#endif // PRODUCTOS_H
+#endif // EMPRESAS_H

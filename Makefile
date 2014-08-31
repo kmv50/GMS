@@ -51,7 +51,8 @@ SOURCES       = main.cpp \
 		BaseClase.cpp \
 		util.cpp \
 		genericos.cpp \
-		productos.cpp moc_mainwindow.cpp
+		productos.cpp \
+		empresas.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nexus.o \
@@ -59,6 +60,7 @@ OBJECTS       = main.o \
 		util.o \
 		genericos.o \
 		productos.o \
+		empresas.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
@@ -126,7 +128,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		BaseClase.cpp \
 		util.cpp \
 		genericos.cpp \
-		productos.cpp
+		productos.cpp \
+		empresas.cpp
 QMAKE_TARGET  = gms
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = gms
@@ -311,7 +314,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/gms1.0.0 || mkdir -p .tmp/gms1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/gms1.0.0/ && $(COPY_FILE) --parents mainwindow.h nexus.h BaseClase.h NameClase.h util.h genericos.h productos.h .tmp/gms1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp nexus.cpp BaseClase.cpp util.cpp genericos.cpp productos.cpp .tmp/gms1.0.0/ && (cd `dirname .tmp/gms1.0.0` && $(TAR) gms1.0.0.tar gms1.0.0 && $(COMPRESS) gms1.0.0.tar) && $(MOVE) `dirname .tmp/gms1.0.0`/gms1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/gms1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/gms1.0.0/ && $(COPY_FILE) --parents mainwindow.h nexus.h BaseClase.h NameClase.h util.h genericos.h productos.h empresas.h .tmp/gms1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp nexus.cpp BaseClase.cpp util.cpp genericos.cpp productos.cpp empresas.cpp .tmp/gms1.0.0/ && (cd `dirname .tmp/gms1.0.0` && $(TAR) gms1.0.0.tar gms1.0.0 && $(COMPRESS) gms1.0.0.tar) && $(MOVE) `dirname .tmp/gms1.0.0`/gms1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/gms1.0.0
 
 
 clean:compiler_clean 
@@ -398,6 +401,12 @@ productos.o: productos.cpp productos.h \
 		nexus.h \
 		util.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o productos.o productos.cpp
+
+empresas.o: empresas.cpp empresas.h \
+		BaseClase.h \
+		nexus.h \
+		util.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o empresas.o empresas.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

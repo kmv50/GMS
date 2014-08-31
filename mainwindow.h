@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <NameClase.h>
 #include <genericos.h>
+#include <empresas.h>
 #include <util.h>
 
 class MainWindow: public QWebView
@@ -23,6 +24,7 @@ public slots:
     QString GetTable(int id, int index = 0, QString request = NULL);
     QString GetForm(int id,int cod);//id para buscar el objeto y cod para ver si la cargo desde el inicio o form nulo
     bool Borrar(int id , int cod);
+    QString GetScript(int id);
 };
 
 #endif // MAINWINDOW_H

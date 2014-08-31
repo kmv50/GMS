@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWebView *parent)
     setWindowTitle("GMS");
     setContextMenuPolicy(Qt::PreventContextMenu);
     setUrl(QString("http://gms123.esy.es/GMS/MainWindow.html"));
+    //setUrl(QString("file:///var/www/html/PhpProject1/public_html/GMS/MainWindow.html"));
     page()->mainFrame()->addToJavaScriptWindowObject("QT", this);
 }
 MainWindow::~MainWindow()
@@ -48,6 +49,7 @@ QString MainWindow::GetTable(int id, int index, QString request)
     }
     return tableHtml;
 }
+
 QString MainWindow::GetForm(int id, int cod)
 {
     QString form;
@@ -57,6 +59,11 @@ QString MainWindow::GetForm(int id, int cod)
        obj->setIdForm(id);
        form = obj->GetForm(cod);
        delete obj;
+    }break;
+    case CREmpresas:{
+        empresas *obj = new empresas;
+        form = obj->GetForm(cod);
+        delete obj;
     }break;
     default: return "Clase no encontrada";  break;
     }
@@ -80,3 +87,21 @@ bool MainWindow::Borrar(int id, int cod)
     return true;
 }
 
+QString MainWindow::GetScript(int id)
+{
+    QString script;
+    switch (id) {
+    case CRMarcas: case CRCategorias: case CRMedidas: case CRTipos: {
+       Genericos *obj = new Genericos;
+       script = obj->GetScript();
+       delete obj;
+    }break;
+    case CREmpresas:{
+        empresas *obj = new empresas;
+        script = obj->GetScript();
+        delete obj;
+    }break;
+    default: return "alert('Error no se encontro la clase referente')";  break;
+    }
+    return script;
+}

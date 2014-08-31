@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     BaseClase.cpp \
     util.cpp \
     genericos.cpp \
-    productos.cpp
+    productos.cpp \
+    empresas.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -30,5 +31,6 @@ HEADERS += \
     NameClase.h \
     util.h \
     genericos.h \
-    productos.h
+    productos.h \
+    empresas.h
 

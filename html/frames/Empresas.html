@@ -1,0 +1,43 @@
+<script>
+    function decirHola()
+    {
+        alert('hola');
+    }
+</script>
+<div style=" padding: 20px; border: #0078AE solid 1px; border-radius: 15px; height: 490px">
+    <div style="float: left; width: 450px">
+    <input type='hidden' id='Cod_empresa' value=":Cod_empresa">
+    <h2>Empresas</h2>
+    <table>
+        <tr>
+            <td>Nombre</td>
+            <td><input type="text" value=":nombre" id="txt_Genericos_Nombre" maxlength="75" placeholder="Nombre" title="El nombre de la empresa maximo 50 caracteres Campo requerido"></td>
+        </tr>
+        <tr>
+            <td>Telefono 1</td>
+            <td><input type="tel"  id="txt_empre_telefono1" value=":telefono1" placeholder="Telefono" title="Numero de telefono principal"></td>
+        </tr>
+        <tr>
+            <td>Telefono 2</td>
+            <td><input type="tel"  id="txt_empre_telefono2" value=":telefono2" placeholder="Telefono" title="Numero de telefono secundario"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" id="txt_empre_email" value=":email" placeholder="Email" title="Email maximo 70 caracteres requiere el signo @ seguido del un dominio. El campo es requerido" > </td>
+        </tr>
+        <tr>
+            <td>Pagina Web</td>
+            <td><input type="url" id="txt_empre_web" value=":web" placeholder="Web page" title="Pagina web del negocio maximo 250 caracteres campo requerido" ></td>
+        </tr>
+        <tr>
+            <td>Descripcion</td>
+            <td><textarea id="txt_empre_descripcion" placeholder="Actividad principal del negocio" title="Descripcion del negocio puede incluir mision y vision" >:descripcion</textarea></td>
+        </tr>
+        <tr>
+            <td>Direccion</td>
+            <td><textarea id="txt_empre_direccion" placeholder="Direccion" title="Direccion del negocio maximo 250 caracteres " >:Direccion</textarea></td>
+        </tr>
+    </table>
+    </div>
+    <div style="float: left;   width: 430px;  height: 375px;  border: #0078AE solid 1px;  border-radius: 15px;  padding: 1px; margin-top: 100px; margin-left: 20px;" id="g_map"></div>
+</div>

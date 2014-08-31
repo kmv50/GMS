@@ -67,7 +67,12 @@ QString Genericos::GetTable()
 */
 QString Genericos::GetForm(int id)
 {
-  LoadFormHTml("html/frames/Generico.html");
+    try{
+        LoadFormHTml("html/frames/Generico.html");
+    }catch(QString ex)
+    {
+        return ex;
+    }
   BindDataHtmlForm(":Titulo",getTitulo());
   if(id == 0)
   {
@@ -113,4 +118,12 @@ QString Genericos::getTitulo()
    if(CRTipos == idForm)
        return "Tipos";
    return NULL;
+}
+QString Genericos::GetScript()
+{
+    try {
+        return LoadScript("html/Scripts/JSGenericos.js");
+    } catch (QString ex) {
+        return ex;
+    }
 }
