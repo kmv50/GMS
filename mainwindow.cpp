@@ -5,7 +5,13 @@ MainWindow::MainWindow(QWebView *parent)
 {
     setWindowTitle("GMS");
     setContextMenuPolicy(Qt::PreventContextMenu);
+#ifdef __linux__
     setUrl(QString("file://"+QDir::currentPath()+"/html/GMS/MainWindow.html"));
+#elif _WIN32
+    setUrl(QString("file://"+QDir::currentPath()+"\html\GMS\MainWindow.html"));
+#else
+#error Sistema Operativo no soportado
+#endif
     //setUrl(QString("file:///var/www/html/PhpProject1/public_html/GMS/MainWindow.html"));
     page()->mainFrame()->addToJavaScriptWindowObject("QT", this);
 }
@@ -29,7 +35,7 @@ bool MainWindow::Guardar(int id, QString Request)
         empresas *obj = new empresas;
         obj->SetJsonRequest(Request);
         delete obj;
-    }
+    }break;
     default: return false;  break;
     }
     }catch(QString ex)
@@ -50,6 +56,14 @@ QString MainWindow::GetTable(int id, int index, QString request)
        tableHtml = obj->GetTable();
        delete obj;
     }break;
+
+    case CREmpresas:
+    {
+        empresas *obj = new empresas;
+        tableHtml = obj->GetTable();
+        delete obj;
+    }break;
+
     default: return "Clase no encontrada";  break;
     }
     return tableHtml;
@@ -83,10 +97,22 @@ bool MainWindow::Borrar(int id, int cod)
        obj->setIdForm(id);
        if(!obj->DeletebyCod(cod))
        {
+            lastError = obj->getLAstError();
             delete obj;
             return false;
        }
     }break;
+
+    case CREmpresas: {
+       empresas *obj = new empresas;
+       if(!obj->DeletebyCod(cod))
+       {
+            lastError = obj->getLAstError();
+            delete obj;
+            return false;
+       }
+    }break;
+
     default: return false;  break;
     }
     return true;

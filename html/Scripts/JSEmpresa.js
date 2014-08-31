@@ -1,18 +1,34 @@
 var ubicacion;
 var map;
 var marker;
+var latLng;
+
 function CallEmpresas()
 {
-    create_form(0);
-    initialize();
-       google.maps.event.addListener(marker, 'dragend', function(){
-       ubicacion = marker.getPosition();
- }); 
+    ClearGenerica(1);
+    $(ventana1).html(QT.GetTable(4));
+    $(ventana1).dialog({
+        autoOpen: true,
+        height: 600,
+        width:800,
+        resizable: false, 
+        buttons:{
+            Agregar: function(){
+                create_form(0);
+            }
+        }
+    });
 } 
 function create_form(cod)
 {
     ClearGenerica(2);
-    $(ventana2).html(QT.GetForm(4, cod));
+    var json = JSON.parse(QT.GetForm(4, cod));
+    if(cod !== 0)
+      latLng = new google.maps.LatLng(json['latitud'],json['longitud']);
+    else
+      latLng = new google.maps.LatLng(9.947777799999999,-84.05472220000001);
+    
+    $(ventana2).html(json['html']);
     $(ventana2).dialog({
         autoOpen: true,
         height: 700,
@@ -24,12 +40,15 @@ function create_form(cod)
                 {
                     growcall('Productos / Distribuidores', 'Agregado Correctamente');
                     $(this).dialog('close');
-                   // $(ventana1).html(QT.GetTable(idtype));
+                    $(ventana1).html(QT.GetTable(4));
                 }
             }
         }
     });
-
+        initialize();
+       google.maps.event.addListener(marker, 'dragend', function(){
+       ubicacion = marker.getPosition();
+       }); 
 }
 
 function initialize() 
@@ -38,7 +57,7 @@ function initialize()
       geocoder = new google.maps.Geocoder();
         
       
-         var latLng = new google.maps.LatLng(9.947777799999999,-84.05472220000001);
+         
       
       //Definimos algunas opciones del mapa a crear
        var myOptions = {
@@ -58,9 +77,7 @@ function initialize()
         
        //función que actualiza los input del formulario con las nuevas latitudes
        //Estos campos suelen ser hidden
-       ubicacion = latLng;
-         
-         
+       ubicacion = latLng;       
 } 
 
 function GuardarEmpresa()
@@ -79,6 +96,11 @@ function GuardarEmpresa()
         return false;
     if(!ValidateTXT($('#txt_empre_direccion')))
         return false;
+    if(ubicacion === null)
+    {
+          mensajebox("Seleccione una ubicacion en el mapa");
+          return false;
+    }
 
     var request = {'Cod':$('#Cod_empresa').val(),'Nombre':$('#txt_Genericos_Nombre').val(),'Tel1':$('#txt_empre_telefono1').val(),'Tel2':$('#txt_empre_telefono2').val(),
                    'email':$('#txt_empre_email').val(),'web':$('#txt_empre_web').val(),'description':$('#txt_empre_descripcion').val(),
@@ -89,4 +111,22 @@ function GuardarEmpresa()
         return false;
     }
     return true;
+}
+
+function getEmpresaByID(cod)
+{
+    create_form(cod);
+}
+
+function DeleteEmpresaByID(cod)
+{
+    if(!QT.Borrar(4,cod))
+    {
+        alert(QT.GetError());
+    }
+    else
+    {
+         growcall('Productos / Distribuidores','Registro borrado correctamente')
+         $(ventana1).html(QT.GetTable(4));
+    }
 }

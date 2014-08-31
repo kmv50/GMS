@@ -7,5 +7,5 @@
 QVariantMap parseJson(const QString &str);
 void BindDataHtmlForm(const QString &token , const QString &value , QString &PhtmlForm);
 //Crear una funcion para validar las comillas y demas...
-
+QString CreateJsonFromQVariantMap(QVariantMap json);
 #endif // UTIL_H

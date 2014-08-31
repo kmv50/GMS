@@ -16,3 +16,10 @@ void BindDataHtmlForm(const QString &token, const QString &value , QString &Phtm
 {
     PhtmlForm.replace(PhtmlForm.indexOf(token),token.size(),value);
 }
+
+QString CreateJsonFromQVariantMap(QVariantMap json)
+{
+    QJsonDocument doc;
+    doc.setObject(QJsonObject::fromVariantMap(json));
+    return doc.toJson();
+}

@@ -33,6 +33,7 @@ QString empresas::GetForm(int id)
     {
         return ex;
     }
+    QVariantMap json;
     if(id == 0)
     {
         BindDataHtmlForm(":Cod_empresa","0");
@@ -46,9 +47,23 @@ QString empresas::GetForm(int id)
     }
     else
     {
+       sql = new Nexus;
+       Nexus_Row row =  sql->GetOneRow("call sp_getEmpresas("+QString::number(id)+");");
+       BindDataHtmlForm(":Cod_empresa",QString::number(id));
+       BindDataHtmlForm(":nombre",row[0].toString());
+       BindDataHtmlForm(":telefono1",row[1].toString());
+       BindDataHtmlForm(":telefono2",row[2].toString());
+       BindDataHtmlForm(":web",row[7].toString());
+       BindDataHtmlForm(":email",row[6].toString());
+       BindDataHtmlForm(":descripcion",row[8].toString());
+       BindDataHtmlForm(":Direccion",row[5].toString());
 
+       json["latitud"] = row[3].toString();
+       json["longitud"] = row[4].toString();
     }
-    return html;
+
+    json["html"]=html;
+    return CreateJsonFromQVariantMap(json);
 }
 
 QString empresas::GetTable()
@@ -63,19 +78,21 @@ QString empresas::GetTable()
 
    FCaller boton;
    boton.ccs = "botonir";
-   boton.name = "";
+   boton.name = "getEmpresaByID";
    boton.value = "";
    boton.data.push_back(0);
    sql->addBoton(boton);
 
    FCaller boton2;
    boton2.ccs = "botoneliminar";
-   boton2.name = "";
+   boton2.name = "DeleteEmpresaByID";
    boton2.value = "";
    boton2.data.push_back(0);
+   sql->addBoton(boton2);
+
    try
    {
-    QString tb  = sql->GetHtmlTable("");
+    QString tb  = sql->GetHtmlTable("call sp_getEmpresas(0);");
     delete sql;
     return tb;
    }catch(QString ex)
@@ -88,7 +105,7 @@ QString empresas::GetTable()
 
 bool empresas::DeletebyCod(int cod)
 {
-
+ return true;
 }
 //_Cod_empresa int,
 //_nombre varchar(50),

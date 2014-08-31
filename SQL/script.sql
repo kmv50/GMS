@@ -396,3 +396,17 @@ begin
       Latitud = _latitud,Longitud = _longitud,Direccion = _Direccion,Email = _email,Pagina_Web = _web,Description = _Descripcion where Cod_empresa = _Cod_empresa;
    end if;
 end;$$
+
+
+create procedure sp_getEmpresas 
+(
+_Cod_Empresa int 
+)
+begin 
+   if(_Cod_Empresa = 0)then
+      select Cod_empresa , Nombre , Telefono , Email from TB_Empresas where  Estado = 1;
+   else 
+      select Nombre , Telefono , Telefono2 , Latitud , Longitud , Direccion , Email,
+      Pagina_Web , Description from TB_Empresas  where Cod_empresa = _Cod_Empresa;
+   end if;
+end;$$
