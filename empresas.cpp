@@ -35,7 +35,7 @@ QString empresas::GetForm(int id)
     }
     if(id == 0)
     {
-        BindDataHtmlForm(":Cod_empresa","");
+        BindDataHtmlForm(":Cod_empresa","0");
         BindDataHtmlForm(":nombre","");
         BindDataHtmlForm(":telefono1","");
         BindDataHtmlForm(":telefono2","");
@@ -90,10 +90,29 @@ bool empresas::DeletebyCod(int cod)
 {
 
 }
+//_Cod_empresa int,
+//_nombre varchar(50),
+//_telefono varchar(20),
+//_telefono2 varchar(20),
+//_latitud decimal(17,15),
+//_longitud decimal(17,15),
+//_Direccion varchar(250),
+//_email varchar(70),
+//_web varchar(250),
+//_Descripcion text
 
 bool empresas::RequestExec()
 {
-
+  QString querySTR = "call sp_setEmpresas("+JsonObj["Cod"].toString()+",'"+JsonObj["Nombre"].toString()+"','"+JsonObj["Tel1"].toString()+"','"+JsonObj["Tel2"].toString()+"',"+JsonObj["latitud"].toString()+","+JsonObj["longitud"].toString()+",'"+JsonObj["direccion"].toString()+"','"+JsonObj["email"].toString()+"','"+JsonObj["web"].toString()+"','"+JsonObj["description"].toString()+"');";
+  sql = new Nexus;
+  if(!sql->ejecute(querySTR))
+  {
+    delete sql;
+    lastError = sql->GetLastError();
+    return false;
+  }
+  delete sql;
+  return true;
 }
 QString empresas::GetScript()
 {

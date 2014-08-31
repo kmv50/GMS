@@ -25,6 +25,11 @@ bool MainWindow::Guardar(int id, QString Request)
        obj->SetJsonRequest(Request);
        delete obj;
     }break;
+    case CREmpresas:{
+        empresas *obj = new empresas;
+        obj->SetJsonRequest(Request);
+        delete obj;
+    }
     default: return false;  break;
     }
     }catch(QString ex)

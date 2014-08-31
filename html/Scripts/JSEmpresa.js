@@ -8,7 +8,6 @@ function CallEmpresas()
        google.maps.event.addListener(marker, 'dragend', function(){
        ubicacion = marker.getPosition();
  }); 
-     decirHola();
 } 
 function create_form(cod)
 {
@@ -21,11 +20,11 @@ function create_form(cod)
         resizable: false,
         buttons: {
             Agregar: function() {
-                if (JAgregarGenericos())
+                if (GuardarEmpresa())
                 {
-                    growcall('Catalogos', 'Agregado Correctamente');
+                    growcall('Productos / Distribuidores', 'Agregado Correctamente');
                     $(this).dialog('close');
-                    $(ventana1).html(QT.GetTable(idtype));
+                   // $(ventana1).html(QT.GetTable(idtype));
                 }
             }
         }
@@ -63,3 +62,31 @@ function initialize()
          
          
 } 
+
+function GuardarEmpresa()
+{
+    if(!ValidateTXT($('#txt_Genericos_Nombre')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_telefono1')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_telefono2')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_email')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_web')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_descripcion')))
+        return false;
+    if(!ValidateTXT($('#txt_empre_direccion')))
+        return false;
+
+    var request = {'Cod':$('#Cod_empresa').val(),'Nombre':$('#txt_Genericos_Nombre').val(),'Tel1':$('#txt_empre_telefono1').val(),'Tel2':$('#txt_empre_telefono2').val(),
+                   'email':$('#txt_empre_email').val(),'web':$('#txt_empre_web').val(),'description':$('#txt_empre_descripcion').val(),
+                   'direccion':$('#txt_empre_direccion').val(),'latitud':ubicacion.lat(),'longitud':ubicacion.lng()};
+    if(!QT.Guardar(4,parseToString(request)))
+    {
+        mensajebox(QT.GetError());
+        return false;
+    }
+    return true;
+}

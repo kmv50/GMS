@@ -374,3 +374,25 @@ begin
       inner join TB_Marcas as mar on Id_marca = Cod_marca where Cod_producto = _Cod_producto;
    end if;
 end;$$
+
+create procedure sp_setEmpresas
+(
+_Cod_empresa int,
+_nombre varchar(50),
+_telefono varchar(20),
+_telefono2 varchar(20),
+_latitud decimal(17,15),
+_longitud decimal(17,15),
+_Direccion varchar(250),
+_email varchar(70),
+_web varchar(250),
+_Descripcion text
+)
+begin
+   if(_Cod_empresa = 0)then
+      insert into TB_Empresas values(null,_nombre,_telefono,_telefono2,_latitud,_longitud,_Direccion,_email,_web,_Descripcion,1);
+   else 
+      update TB_Empresas set Nombre = _nombre,Telefono = _telefono,Telefono2 = _telefono2,
+      Latitud = _latitud,Longitud = _longitud,Direccion = _Direccion,Email = _email,Pagina_Web = _web,Description = _Descripcion where Cod_empresa = _Cod_empresa;
+   end if;
+end;$$
