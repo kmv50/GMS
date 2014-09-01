@@ -160,3 +160,42 @@ Nexus_Table Nexus::GetDAtaTable(QString procedure)
     CloseConexion();
     return table;
 }
+
+QString Nexus::GetComboBox(QString procedure,int codSelect)
+{
+    if(!Open())
+    {
+        CloseConexion();
+        throw lastError;
+    }
+    query = new QSqlQuery(*db);
+    if(!query->exec(procedure))
+    {
+        lastError = query->lastError().text();
+        query->clear();
+        delete query;
+        CloseConexion();
+        throw lastError;
+    }
+    QString cb;
+    if(codSelect == -1)
+    {
+       cb +="<option value='-1' selected >Seleccione un item</option>";
+       while (query->next())
+           cb +="<option value='"+query->value(0).toString()+"'>"+query->value(1).toString()+"</option>";
+    }
+    else
+    {
+       cb +="<option value='-1'>Seleccione un item</option>";
+       while (query->next()) {
+           if(query->value(0).toInt() == codSelect)
+             cb +="<option value='"+query->value(0).toString()+"' selected >"+query->value(1).toString()+"</option>";
+           else
+             cb +="<option value='"+query->value(0).toString()+"'>"+query->value(1).toString()+"</option>";
+       }
+    }
+    query->clear();
+    delete query;
+    CloseConexion();
+    return  cb;
+}

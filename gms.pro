@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     util.cpp \
     genericos.cpp \
     productos.cpp \
-    empresas.cpp
+    empresas.cpp \
+    proveedores.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -32,5 +33,6 @@ HEADERS += \
     util.h \
     genericos.h \
     productos.h \
-    empresas.h
+    empresas.h \
+    proveedores.h
 

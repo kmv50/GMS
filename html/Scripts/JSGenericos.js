@@ -17,7 +17,8 @@ function CallGenericos(genericoActive)
                $(ventana2).html(QT.GetForm(idtype,0));
                  $(ventana2).dialog({
                    autoOpen:true,
-                   height: 600,                   
+                   height: 600,  
+                   title:'',
                    buttons:{
                      Agregar: function(){
                             if(JAgregarGenericos())
@@ -43,6 +44,7 @@ function JGetGenericosbyID(cod)
     $(ventana2).dialog({
         autoOpen: true,
         height: 600,
+        title:'',
         buttons: {
             Agregar: function() {
                 if (JAgregarGenericos())

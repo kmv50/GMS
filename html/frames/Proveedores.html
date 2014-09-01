@@ -1,0 +1,34 @@
+<div style=" padding: 20px; border: #0078AE solid 1px; border-radius: 15px; height: 450px">
+    <input type='hidden' id='Cod_persona' value=":Cod_persona">
+    <h2>Proveedores</h2>
+    <table>
+        <tr>
+            <td>Nombre</td>
+            <td><input type="text" value=":nombre" id="txt_persona_Nombre" maxlength="75" placeholder="Nombre" title="El nombre de la empresa maximo 50 caracteres Campo requerido"></td>
+        </tr>
+        <tr>
+            <td>Telefono 1</td>
+            <td><input type="tel" pattern="\d{3}[\ ]\d{4}[\-]\d{4}"  id="txt_persona_telefono1" value=":telefono1" placeholder="Telefono" title="Numero de telefono principal el formato correcto es 506 0000-0000"></td>
+        </tr>
+        <tr>
+            <td>Telefono 2</td>
+            <td><input type="tel"  id="txt_persona_telefono2" value=":telefono2" placeholder="Telefono" title="Numero de telefono secundario"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email"  id="txt_persona_email" value=":email" placeholder="Email" title="Email del contacto"></td>
+        </tr>
+        <tr>
+            <td>Cedula</td>
+            <td><input type="text" id="txt_persona_cedula" value=":cedula" placeholder="Cedula" title="Cedula" > </td>
+        </tr>
+        <tr>
+            <td>Empresa</td>
+            <td><select id="cb_empresa">:cb_empresa</select></td>
+        </tr>
+        <tr>
+            <td>Direccion</td>
+            <td><textarea id="txt_persona_direccion" placeholder="Direccion" title="Direccion  maximo 250 caracteres " >:Direccion</textarea></td>
+        </tr>
+    </table>
+</div>

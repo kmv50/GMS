@@ -43,6 +43,7 @@ public:
     QString GetLastError(){return lastError;}
     Nexus_Row GetOneRow(QString procedure);
     Nexus_Table GetDAtaTable(QString procedure);
+    QString GetComboBox(QString procedure, int codSelect = -1);
 };
 
 #endif // NEXUS_H

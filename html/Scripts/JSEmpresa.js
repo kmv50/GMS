@@ -12,6 +12,7 @@ function CallEmpresas()
         height: 600,
         width:800,
         resizable: false, 
+        title:'Empresas',
         buttons:{
             Agregar: function(){
                 create_form(0);
@@ -34,6 +35,7 @@ function create_form(cod)
         height: 700,
         width:1000,
         resizable: false,
+        title:'Empresas',
         buttons: {
             Agregar: function() {
                 if (GuardarEmpresa())

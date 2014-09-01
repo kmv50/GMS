@@ -28,6 +28,7 @@ Nombre VARCHAR(50) not null,
 Cedula int not null unique ,
 Telefono varchar(20) not null,
 Telefono2 varchar(20) null,
+Email varchar(70) not null,
 Direccion varchar(300) not null,
 Estado tinyint(1) not null,
 constraint PK_personas primary key clustered 
@@ -40,12 +41,11 @@ cod_persona desc
 #esta no tiene estado xq lo hereda
 CREATE TABLE TB_Proveedores
 (
-Cod_proveedor int not null AUTO_INCREMENT,
 Id_personas int not null,
 Id_empresa int not null,
 constraint PK_proveedores primary key clustered
 (
-Cod_proveedor desc
+Id_personas desc , Id_empresa desc
 )
 );
 
@@ -120,8 +120,8 @@ foreign key(Id_marca) references TB_Marcas (Cod_marca);
 
 create table TB_Productos_Proveedores
 (
-id_producto int not null,
-id_proveedor int not null,
+Id_producto int not null,
+Id_proveedor int not null,
 constraint PK_Productos_Proveedores primary key clustered
 (
 id_producto desc , id_proveedor desc
@@ -132,7 +132,7 @@ alter table TB_Productos_Proveedores add constraint FK_Productos_Proveedores_Pro
 foreign key(id_producto) references TB_Productos (Cod_producto);
 
 alter table TB_Productos_Proveedores add constraint FK_Productos_Proveedores_Proveedor_Cod_proveedor
-foreign key(id_proveedor) references TB_Proveedores (Cod_proveedor);
+foreign key(id_proveedor) references TB_Proveedores (Id_personas);
 
 CREATE TABLE TB_Tipos
 (
@@ -180,7 +180,7 @@ alter table TB_Inventarios add constraint FK_Inventarios_Productos_Cod_producto
 foreign key(Id_producto) references TB_Productos (Cod_producto);
 
 alter table TB_Inventarios add constraint FK_Inventarios_Proveedores_Cod_proveedor
-foreign key(Id_proveedor) references TB_Proveedores (Cod_proveedor);
+foreign key(Id_proveedor) references TB_Proveedores (Id_personas);
 
 create table TB_Facturas
 (
@@ -341,7 +341,7 @@ if(Action = 2)then
   end if;
 end if;
 end;$$
-
+#no creado
 create procedure sp_setProductos
 (
 _Cod_producto   int(11),       
@@ -361,7 +361,7 @@ begin
      Id_medida = _Id_medida, Id_categoria = _Id_categoria ,Id_marca = _Id_marca where Cod_producto = _Cod_producto;
   end if;
 end;$$
-
+#no creado
 create procedure sp_getProductos 
 (
 _Cod_producto int
@@ -410,3 +410,53 @@ begin
       Pagina_Web , Description from TB_Empresas  where Cod_empresa = _Cod_Empresa;
    end if;
 end;$$
+
+create procedure sp_getCbEmpresas()
+begin 
+  select Cod_empresa , nombre from TB_Empresas;
+end;$$
+
+create procedure sp_getProveedor
+(
+_Cod_proveedor int 
+)
+begin 
+   if(_Cod_proveedor = 0)then 
+      select Cod_persona , per.Nombre , per.Telefono ,empre.Nombre  from TB_Proveedores
+      inner join TB_Personas as per on Id_personas = Cod_persona 
+      inner join TB_Empresas as empre on Id_empresa = Cod_empresa
+      where per.Estado = 1 and empre.Estado = 1;
+   else 
+      select Nombre , Cedula , Telefono , Telefono2 , Direccion,Email  ,Id_empresa from TB_Proveedores
+      inner join TB_Personas on Id_personas = Cod_persona 
+      where Cod_persona = _Cod_proveedor;
+   end if;
+end;$$
+
+create procedure sp_setProveedores
+(
+_Cod_persona int ,
+_nombre varchar(50),
+_Cedula int,
+_telefono varchar(20),
+_telefono2 varchar(20),
+_Email varchar(70),
+_Direccion varchar(300),
+_Id_empresa int 
+)
+begin 
+   
+   declare codPersonaLst int;
+   
+   if(_Cod_persona = 0)then 
+      insert into TB_Personas values(null,_nombre,_Cedula,_telefono,_telefono2,_Email,_Direccion,1);
+      set codPersonaLst = (select Cod_persona from TB_Personas order by Cod_persona desc limit 1);
+      insert into TB_Proveedores values(codPersonaLst , _Id_empresa);
+   else 
+      update TB_Personas set Nombre = _nombre , Cedula = _Cedula , Telefono = _telefono , Telefono2 = _telefono2,
+      Email = _Email , Direccion = _Direccion where Cod_persona = _Cod_persona;
+      update TB_Proveedores set Id_empresa = _Id_empresa where Id_personas = _Cod_persona;
+   end if;
+end;$$
+
+

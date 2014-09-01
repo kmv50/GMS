@@ -5,6 +5,7 @@
 #include <NameClase.h>
 #include <genericos.h>
 #include <empresas.h>
+#include <proveedores.h>
 #include <util.h>
 
 class MainWindow: public QWebView

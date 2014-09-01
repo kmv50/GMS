@@ -23,3 +23,9 @@ function Create_Empresa()
     loadScript(4);
     CallEmpresas(0);
 }
+function Create_Proveedores()
+{
+    RemoveScript();
+    loadScript(5);
+    CallProveedores(0);
+}

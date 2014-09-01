@@ -36,6 +36,13 @@ bool MainWindow::Guardar(int id, QString Request)
         obj->SetJsonRequest(Request);
         delete obj;
     }break;
+
+    case CRProveedores:{
+        proveedores *obj = new proveedores;
+        obj->SetJsonRequest(Request);
+        delete obj;
+    }break;
+
     default: return false;  break;
     }
     }catch(QString ex)
@@ -64,6 +71,13 @@ QString MainWindow::GetTable(int id, int index, QString request)
         delete obj;
     }break;
 
+    case CRProveedores:
+    {
+        proveedores *obj = new proveedores;
+        tableHtml = obj->GetTable();
+        delete obj;
+    }break;
+
     default: return "Clase no encontrada";  break;
     }
     return tableHtml;
@@ -84,6 +98,13 @@ QString MainWindow::GetForm(int id, int cod)
         form = obj->GetForm(cod);
         delete obj;
     }break;
+
+    case CRProveedores:{
+        proveedores *obj = new proveedores;
+        form = obj->GetForm(cod);
+        delete obj;
+    }break;
+
     default: return "Clase no encontrada";  break;
     }
     return form;
@@ -112,6 +133,15 @@ bool MainWindow::Borrar(int id, int cod)
             return false;
        }
     }break;
+    case CRProveedores: {
+       proveedores *obj = new proveedores;
+       if(!obj->DeletebyCod(cod))
+       {
+            lastError = obj->getLAstError();
+            delete obj;
+            return false;
+       }
+    }break;
 
     default: return false;  break;
     }
@@ -132,6 +162,13 @@ QString MainWindow::GetScript(int id)
         script = obj->GetScript();
         delete obj;
     }break;
+
+    case CRProveedores:{
+        proveedores *obj = new proveedores;
+        script = obj->GetScript();
+        delete obj;
+    }break;
+
     default: return "alert('Error no se encontro la clase referente')";  break;
     }
     return script;

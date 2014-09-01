@@ -52,7 +52,8 @@ SOURCES       = main.cpp \
 		util.cpp \
 		genericos.cpp \
 		productos.cpp \
-		empresas.cpp moc_mainwindow.cpp
+		empresas.cpp \
+		proveedores.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nexus.o \
@@ -61,6 +62,7 @@ OBJECTS       = main.o \
 		genericos.o \
 		productos.o \
 		empresas.o \
+		proveedores.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
@@ -129,7 +131,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		util.cpp \
 		genericos.cpp \
 		productos.cpp \
-		empresas.cpp
+		empresas.cpp \
+		proveedores.cpp
 QMAKE_TARGET  = gms
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = gms
@@ -314,7 +317,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/gms1.0.0 || mkdir -p .tmp/gms1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/gms1.0.0/ && $(COPY_FILE) --parents mainwindow.h nexus.h BaseClase.h NameClase.h util.h genericos.h productos.h empresas.h .tmp/gms1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp nexus.cpp BaseClase.cpp util.cpp genericos.cpp productos.cpp empresas.cpp .tmp/gms1.0.0/ && (cd `dirname .tmp/gms1.0.0` && $(TAR) gms1.0.0.tar gms1.0.0 && $(COMPRESS) gms1.0.0.tar) && $(MOVE) `dirname .tmp/gms1.0.0`/gms1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/gms1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/gms1.0.0/ && $(COPY_FILE) --parents mainwindow.h nexus.h BaseClase.h NameClase.h util.h genericos.h productos.h empresas.h proveedores.h .tmp/gms1.0.0/ && $(COPY_FILE) --parents main.cpp mainwindow.cpp nexus.cpp BaseClase.cpp util.cpp genericos.cpp productos.cpp empresas.cpp proveedores.cpp .tmp/gms1.0.0/ && (cd `dirname .tmp/gms1.0.0` && $(TAR) gms1.0.0.tar gms1.0.0 && $(COMPRESS) gms1.0.0.tar) && $(MOVE) `dirname .tmp/gms1.0.0`/gms1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/gms1.0.0
 
 
 clean:compiler_clean 
@@ -345,6 +348,7 @@ moc_mainwindow.cpp: NameClase.h \
 		BaseClase.h \
 		nexus.h \
 		util.h \
+		empresas.h \
 		mainwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/kevin/c++/htmlC++/GMSRemote -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWebKitWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtQuick -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtQml -I/usr/include/x86_64-linux-gnu/qt5/QtWebKit -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/x86_64-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
@@ -367,7 +371,8 @@ main.o: main.cpp mainwindow.h \
 		genericos.h \
 		BaseClase.h \
 		nexus.h \
-		util.h
+		util.h \
+		empresas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -375,7 +380,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		genericos.h \
 		BaseClase.h \
 		nexus.h \
-		util.h
+		util.h \
+		empresas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 nexus.o: nexus.cpp nexus.h
@@ -407,6 +413,12 @@ empresas.o: empresas.cpp empresas.h \
 		nexus.h \
 		util.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o empresas.o empresas.cpp
+
+proveedores.o: proveedores.cpp proveedores.h \
+		BaseClase.h \
+		nexus.h \
+		util.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o proveedores.o proveedores.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
