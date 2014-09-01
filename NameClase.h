@@ -6,7 +6,8 @@ typedef enum ClassRequiere{
     CRMedidas= 2,
     CRTipos = 3,
     CREmpresas = 4,
-    CRProveedores = 5
+    CRProveedores = 5,
+    CRProductos = 6
 }ClassRequiere;
 
 #endif // NAMECLASE_H

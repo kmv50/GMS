@@ -10,10 +10,14 @@ public:
     virtual QString GetTable();
     virtual QString GetForm(int id);
     virtual bool DeletebyCod(int cod);
-    QString getMarcasTable(QString filter);
     virtual QString GetScript();
+    void procesarRequestTB(QString json);
 protected:
     virtual bool RequestExec();
+private:
+    QString MainTable();
+    QString MarcasTable(QString name);
+    QString ProveedoresTable(QString name);
 };
 
 #endif // PRODUCTOS_H

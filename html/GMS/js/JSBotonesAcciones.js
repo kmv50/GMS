@@ -21,11 +21,17 @@ function Create_Empresa()
 {
      RemoveScript();
     loadScript(4);
-    CallEmpresas(0);
+    CallEmpresas();
 }
 function Create_Proveedores()
 {
     RemoveScript();
     loadScript(5);
-    CallProveedores(0);
+    CallProveedores();
+}
+function Create_Productos()
+{
+    RemoveScript();
+    loadScript(6);
+    CallProductos();
 }

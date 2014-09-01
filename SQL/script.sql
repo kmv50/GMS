@@ -460,3 +460,43 @@ begin
 end;$$
 
 
+create procedure sp_CBCategorias()
+begin 
+   select Cod_categoria , nombre from TB_Categorias;
+end;$$
+create procedure sp_CBMedidas()
+begin 
+  select Cod_medida , nombre from TB_Medidas;
+end;$$
+
+create procedure sp_getMarcasModal()
+begin 
+  select Cod_marca , Nombre , Abreviacion from TB_Marcas where Estado = 1 limit 30; 
+end;$$
+
+create procedure sp_getMarcasModalFilter
+(
+filtro varchar(75)
+)
+begin 
+  select Cod_marca , Nombre , Abreviacion from TB_Marcas where Nombre like concat('%',filtro,'%') and Estado = 1; 
+end;$$
+
+create procedure sp_getProveedoresModal()
+begin 
+   select Cod_persona , per.Nombre , per.Telefono ,empre.Nombre  from TB_Proveedores
+      inner join TB_Personas as per on Id_personas = Cod_persona 
+      inner join TB_Empresas as empre on Id_empresa = Cod_empresa
+      where per.Estado = 1 and empre.Estado = 1 limit 30;
+end;$$
+
+create procedure sp_getProveedoresModalFiltro
+(
+filtro varchar(50)
+)
+begin 
+   select Cod_persona , per.Nombre , per.Telefono ,empre.Nombre  from TB_Proveedores
+      inner join TB_Personas as per on Id_personas = Cod_persona 
+      inner join TB_Empresas as empre on Id_empresa = Cod_empresa
+      where per.Estado = 1 and empre.Estado = 1 and  empre.Nombre like concat('%',filtro,'%') limit 30;
+end;$$

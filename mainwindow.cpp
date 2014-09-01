@@ -43,6 +43,12 @@ bool MainWindow::Guardar(int id, QString Request)
         delete obj;
     }break;
 
+    case CRProductos:{
+        Productos *obj = new Productos;
+        obj->SetJsonRequest(Request);
+        delete obj;
+    }break;
+
     default: return false;  break;
     }
     }catch(QString ex)
@@ -78,6 +84,14 @@ QString MainWindow::GetTable(int id, int index, QString request)
         delete obj;
     }break;
 
+    case CRProductos:
+    {
+        Productos *obj = new Productos;
+        obj->procesarRequestTB(request);
+        tableHtml = obj->GetTable();
+        delete obj;
+    }break;
+
     default: return "Clase no encontrada";  break;
     }
     return tableHtml;
@@ -101,6 +115,12 @@ QString MainWindow::GetForm(int id, int cod)
 
     case CRProveedores:{
         proveedores *obj = new proveedores;
+        form = obj->GetForm(cod);
+        delete obj;
+    }break;
+
+    case CRProductos:{
+        Productos *obj = new Productos;
         form = obj->GetForm(cod);
         delete obj;
     }break;
@@ -143,6 +163,16 @@ bool MainWindow::Borrar(int id, int cod)
        }
     }break;
 
+    case CRProductos: {
+       Productos *obj = new Productos;
+       if(!obj->DeletebyCod(cod))
+       {
+            lastError = obj->getLAstError();
+            delete obj;
+            return false;
+       }
+    }break;
+
     default: return false;  break;
     }
     return true;
@@ -165,6 +195,12 @@ QString MainWindow::GetScript(int id)
 
     case CRProveedores:{
         proveedores *obj = new proveedores;
+        script = obj->GetScript();
+        delete obj;
+    }break;
+
+    case CRProductos:{
+        Productos *obj = new Productos;
         script = obj->GetScript();
         delete obj;
     }break;
